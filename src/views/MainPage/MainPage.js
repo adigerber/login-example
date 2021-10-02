@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import { ApiContext } from "../../components/Api/Api";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import LogoutButton from "../../components/LogoutButton/LogoutButton";
 import Posts from "../../components/Posts/Posts";
 
-export default function MainPage({ api }) {
+export default function MainPage() {
+    const api = useContext(ApiContext);
+
     return (
         <div>
             Hello!

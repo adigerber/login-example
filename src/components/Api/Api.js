@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 
-export default function Auth({ render }) {
+const ApiContext = createContext({});
+
+export default function Api({ children }) {
     // Store the token in a state variable.
     // In real apps perhaps you'd store it somewhere else, e.g. localStorage (see https://usehooks.com/useLocalStorage for hook example)
     // so that it persists after page refresh
@@ -29,6 +31,11 @@ export default function Auth({ render }) {
         isLoggedIn: token !== null,
     };
 
-    // render is a method which consumes the api object and renders a component that uses it
-    return render(api);
+    return (
+        <ApiContext.Provider value={api}>
+            {children}
+        </ApiContext.Provider>
+    )
 }
+
+export { ApiContext };
